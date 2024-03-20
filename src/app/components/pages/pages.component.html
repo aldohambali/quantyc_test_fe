@@ -1,0 +1,12 @@
+<nav class="navbar fixed-top bg-light py-3 shadow">
+  <div class="container-fluid">
+    <a class="navbar-brand">Navbar</a>
+    <form class="d-flex align-items-center" role="search">
+        <p class="m-0 px-3">Hi, {{name}} </p>
+        <button class="btn btn-outline-primary" (click)="logout()">Logout</button>
+    </form>
+  </div>
+</nav>
+<div class="pt-5 mt-4">
+    <router-outlet></router-outlet>
+</div>

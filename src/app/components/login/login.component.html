@@ -1,0 +1,61 @@
+<div class="text-center form-div">
+    
+    <main class="form-signin">
+      <form [formGroup]="loginForm" id="loginDiv" (ngSubmit)="onSubmit()">
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Sign In</h1>
+    
+        <div class="form-floating">
+          <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  [(ngModel)]="ValEmail" formControlName="email" maxlength="200" [ngClass]="{ 'is-invalid': submitted && f?.email?.errors }">
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" [(ngModel)]="ValPassword" formControlName="password" maxlength="200" [ngClass]="{ 'is-invalid': submitted && f?.password?.errors }">
+          <label for="floatingPassword">Password</label>
+        </div>
+    
+        <div class="mb-3">
+          <div
+          class="errtxt"
+          role="alert"
+          *ngIf="submitted && f?.email?.errors"
+          >
+          <div *ngIf="f?.email?.errors?.['required']">Email is required</div>
+          <div *ngIf="f?.email?.errors?.['email']">Email must be a valid email address</div>
+          </div>
+  
+          <div
+          class="errtxt"
+          role="alert"
+          *ngIf="submitted && f?.password?.errors"
+          >
+          <div *ngIf="f?.password?.errors?.['required']">Password is required</div>
+          </div>
+
+
+          <div class="" *ngFor="let err of errorMsg; let i = index">
+            <small class="text-danger">{{err}}</small>
+          </div>
+
+        </div>
+
+
+
+        
+
+
+        <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" [disabled]="loading">{{loading?'Loading..':'Login'}}</button>
+        <a routerLink='/signup' class="w-100 btn btn-link btn-block w-100 pt-2 pb-2">
+          Sign Up
+        </a>
+      </form>
+
+
+
+    </main>
+    
+    
+        
+      
+    
+</div>

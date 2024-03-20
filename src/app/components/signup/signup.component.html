@@ -1,0 +1,127 @@
+<div class="form-div">
+  <main class="form-signup">
+
+    <form [formGroup]="signupForm" id="signupDiv" (ngSubmit)="onSubmit()">
+      <div class="text-center">
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Sign Up</h1>
+      </div>
+
+  
+      <div class="">
+        <div class="col-sm-12">
+
+          <div class="form-floating mb-3">
+            
+            <input type="text" placeholder="Tuliskan nama Anda" [(ngModel)]="ValUsername" formControlName="username"  maxlength="50" class="form-control" [ngClass]="{ 'is-invalid': submitted && f?.username?.errors }" />
+            <label for="username">Username</label>
+            <div
+            class="errtxt"
+            role="alert"
+            *ngIf="submitted && f?.username?.errors"
+            >
+            <div *ngIf="f?.username?.errors?.['required']">Username is required</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-12">
+          
+          <div class="form-floating mb-3">
+            
+            <input type="text" placeholder="your@mail.com" [(ngModel)]="ValEmail" formControlName="email" maxlength="200" class="form-control" required [ngClass]="{ 'is-invalid': submitted && f?.email?.errors }" />
+            <label for="email">Email</label>
+            <div
+            class="errtxt"
+            role="alert"
+            *ngIf="submitted && f?.email?.errors"
+            >
+            <div *ngIf="f?.email?.errors?.['required']">Email is required</div>
+            <div *ngIf="f?.email?.errors?.['email']">Email must be a valid email address</div>
+            </div>
+          </div>                
+
+        </div>
+        <div class="col-sm-12">
+          
+          <div class="form-floating mb-3">
+            
+            <input type="password" placeholder="password" [(ngModel)]="ValPassword"  maxlength="200" formControlName="password" class="form-control" required [ngClass]="{ 'is-invalid': submitted && f?.password?.errors }" />
+            <label for="password">Password</label>
+            <div
+            class="errtxt"
+            role="alert"
+            *ngIf="submitted && f?.password?.errors"
+            >
+            <div *ngIf="f?.password?.errors?.['required']">Password is required</div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-12">
+          
+          <div class="form-floating mb-3">
+            <select class="form-control form-select" [(ngModel)]="ValRole" formControlName="role" required [ngClass]="{ 'is-invalid': submitted && f?.role?.errors }">
+              <option value=""> - Select Role - </option>
+              <option value="1">User</option>
+              <option value="0">Admin</option>
+            </select>
+
+            <label for="role">Role</label>
+            <div
+            class="errtxt"
+            role="alert"
+            *ngIf="submitted && f?.role?.errors"
+            >
+            <div *ngIf="f?.role?.errors?.['required']">Role is required</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-12" *ngFor="let err of errorMsg; let i = index">
+          <small class="text-danger">{{err}}</small>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group mt-3 text-center">
+            <button *ngIf="!loading" class="w-100 btn btn-primary btn-block w-100 pt-2 pb-2">
+                Sign Up
+            </button>
+            <button *ngIf="loading" class="w-100 btn btn-primary btn-block w-100 pt-2 pb-2" disabled>
+            Loading..
+            </button>
+            <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="form-group mt-3">
+            <a routerLink='/login' class="w-100 btn btn-link btn-block w-100 pt-2 pb-2">
+                Cancel
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </form> 
+
+
+    
+  </main>
+</div>    
+
+<ng-template #content let-modal>
+	<div class="modal-body">
+    <div class="text-center">
+      <h6>Registrasi berhasil.</h6>
+    </div>
+   
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-primary w-100" (click)="gotoLogin()">Close</button>
+	</div>
+</ng-template>
+
+
+

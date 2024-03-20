@@ -1,0 +1,43 @@
+<div class="album py-5 bg-white">
+    <div class="container">
+
+        
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-5 g-3">
+
+            <div class="col" *ngFor="let data of photos; let i = index">
+                <div class="card shadow-sm h-100">
+                    <img src="{{data.thumbnailUrl}}"  class="card-img-top" triggers="click"
+                    [autoClose]="'outside'" [ngbTooltip]="tipContent">
+                    <ng-template #tipContent>
+                        <a href="{{data.thumbnailUrl}}" target="_blank">{{data.thumbnailUrl}}</a>
+                    </ng-template>
+                    <div class="card-body">
+                        
+                    <div class="d-flex justify-content-between align-items-center">
+                        <small class="text-muted">id : {{data.id}}</small>
+                        <small class="text-muted">albumId : {{data.albumId}}</small>
+                    </div>
+                    
+                    <p class="card-text">{{data.title}}</p>
+
+                    
+                    </div>
+                </div>
+            </div>    
+    
+        </div>
+
+        <div *ngIf="isLoading" class="row">
+            <div class="col-12 py-5">
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ngb-alert *ngIf="isFullyLoaded" class="my-4" type="info" [dismissible]="true">all photos loaded.</ngb-alert>
+
+    </div>
+</div>
